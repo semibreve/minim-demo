@@ -1,0 +1,15 @@
+{
+    "name": "lambdacasserole/minim",
+    "description": "Minimal single-user auth in PHP.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Saul Johnson",
+            "email": "saul.a.johnson@gmail.com"
+        }
+    ],
+    "require": {
+        "mustangostang/spyc": "^0.5.1"
+    }
+}

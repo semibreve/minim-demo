@@ -1,0 +1,18 @@
+{
+  "name": "lambdacasserole/minim",
+  "version": "1.0.0",
+  "homepage": "https://github.com/lambdacasserole/minim",
+  "authors": [
+    "Saul Johnson <saul.a.johnson@gmail.com>"
+  ],
+  "description": "Minimal single-user auth in PHP.",
+  "keywords": [
+    "minimal",
+    "authentication"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "bootswatch": "^3.3.6"
+  }
+}

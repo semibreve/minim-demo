@@ -1,0 +1,26 @@
+{
+  "name": "minim",
+  "version": "1.0.0",
+  "description": "Minimal single-user auth in PHP.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lambdacasserole/minim.git"
+  },
+  "keywords": [
+    "minimal",
+    "authentication"
+  ],
+  "author": "Saul Johnson <saul.a.johnson@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lambdacasserole/minim/issues"
+  },
+  "homepage": "https://github.com/lambdacasserole/minim#readme",
+  "devDependencies": {
+    "bower": "^1.7.9"
+  }
+}
