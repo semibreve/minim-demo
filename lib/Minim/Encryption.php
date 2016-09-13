@@ -9,7 +9,7 @@ namespace Minim;
  * @author Saul Johnson
  * @since 13/09/2016
  */
-class Crypto
+class Encryption
 {
     /**
      * Hashes a password using SHA-256.

@@ -2,15 +2,15 @@
 
 require_once 'init.php';
 
-use Minim\Auth;
+use Minim\Authenticator;
 use Minim\Request;
-use Minim\Security;
+use Minim\Configuration;
 
 // Did user attempt login?
 $attempted = Request::isLoginFormSubmitted();
 
 // Try to log user in.
-$auth = new Auth(new Security(__DIR__ . '/../security.yml'));
+$auth = new Authenticator(new Configuration(__DIR__ . '/../security.yml'));
 if ($auth->isAuthenticated() || // Already logged in?
     ($attempted && $auth->authenticate(Request::getLoginEmail(), Request::getLoginPassword()))) {
     header('Location: /admin.php');

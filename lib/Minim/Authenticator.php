@@ -11,14 +11,14 @@ use Spyc;
  * @author Saul Johnson
  * @since 13/09/2016
  */
-class Auth
+class Authenticator
 {
     /**
      * The security settings for this authenticator.
      *
-     * @var Security
+     * @var Configuration
      */
-    private $security;
+    private $config;
 
     /**
      * Dispenses a randomly generated authentication token.
@@ -27,17 +27,17 @@ class Auth
      */
     private function dispenseToken()
     {
-        $token = bin2hex(random_bytes($this->security->getTokenLength())); // Generate token.
+        $token = bin2hex(random_bytes($this->config->getTokenLength())); // Generate token.
 
         $arr = array(
             'token' => $token,
-            'expires' => time() + $this->security->getTokenTimeToLive()
+            'expires' => time() + $this->config->getTokenTimeToLive()
         ); // Prepare array containing token and expiry.
 
         $plain = Spyc::YAMLDump($arr); // Encode as YAML.
-        $encrypted =  Crypto::encrypt($plain, $this->security->getSecretKey()); // Apply symmetric encryption.
+        $encrypted =  Encryption::encrypt($plain, $this->config->getSecretKey()); // Apply symmetric encryption.
 
-        file_put_contents($this->security->getSessionFileName(), $encrypted); // Write to disk.
+        file_put_contents($this->config->getSessionFileName(), $encrypted); // Write to disk.
 
         return $token;
     }
@@ -50,9 +50,9 @@ class Auth
      */
     private function validateToken($token)
     {
-        $encrypted = file_get_contents($this->security->getSessionFileName()); // Read encrypted session file.
+        $encrypted = file_get_contents($this->config->getSessionFileName()); // Read encrypted session file.
 
-        $plain = Crypto::decrypt($encrypted, $this->security->getSecretKey()); // Decrypt data.
+        $plain = Encryption::decrypt($encrypted, $this->config->getSecretKey()); // Decrypt data.
         $file = Spyc::YAMLLoadString($plain); // Parse YAML.
 
         return $token == $file['token'] && time() < $file['expires']; // Token must be valid and not expired.
@@ -65,9 +65,9 @@ class Auth
      */
     public function getCookieToken()
     {
-        $name = $this->security->getCookieName();
+        $name = $this->config->getCookieName();
         $encrypted = isset($_COOKIE[$name]) ? $_COOKIE[$name] : ''; // Read encrypted cookie.
-        $plain = Crypto::decrypt($encrypted, $this->security->getSecretKey());  // Decrypt cookie.
+        $plain = Encryption::decrypt($encrypted, $this->config->getSecretKey());  // Decrypt cookie.
 
         return $plain;
     }
@@ -79,8 +79,8 @@ class Auth
      */
     public function setCookieToken($token)
     {
-        $encrypted = Crypto::encrypt($token, $this->security->getSecretKey()); // Encrypt token.
-        setcookie($this->security->getCookieName(), $encrypted); // Store in cookie.
+        $encrypted = Encryption::encrypt($token, $this->config->getSecretKey()); // Encrypt token.
+        setcookie($this->config->getCookieName(), $encrypted); // Store in cookie.
     }
 
     /**
@@ -93,8 +93,8 @@ class Auth
     public function authenticate($email, $password)
     {
         // Check credentials.
-        if ($this->security->getAdminEmail() != $email
-            || Crypto::sha256($password, $this->security->getSalt()) != $this->security->getAdminPasswordHash())
+        if ($this->config->getAdminEmail() != $email
+            || Encryption::sha256($password, $this->config->getSalt()) != $this->config->getAdminPasswordHash())
         {
             return false; // Authentication failure.
         }
@@ -125,12 +125,12 @@ class Auth
      */
     public function logout()
     {
-        setcookie($this->security->getCookieName(), '', time() - 3600); // Remove client-side cookie.
-        unlink($this->security->getSessionFileName()); // Delete session file.
+        setcookie($this->config->getCookieName(), '', time() - 3600); // Remove client-side cookie.
+        unlink($this->config->getSessionFileName()); // Delete session file.
     }
 
-    public function __construct(Security $security)
+    public function __construct(Configuration $security)
     {
-        $this->security = $security;
+        $this->config = $security;
     }
 }

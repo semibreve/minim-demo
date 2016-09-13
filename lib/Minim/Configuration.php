@@ -11,7 +11,7 @@ use Spyc;
  * @author Saul Johnson
  * @since 11/09/2016
  */
-class Security
+class Configuration
 {
     private $config;
 
