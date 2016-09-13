@@ -4,7 +4,9 @@ admin_email: me@example.com
 admin_password_hash: 8b2d49d3e1e9a339b030e08e89ed6cb77c50081e8f9e1c41511216b4d1787aef
 secret_key: 7WCPTI3of3cp
 salt: cgJ28CsaeV1T
-token_len: 32
+token_length: 32
 token_ttl: 1200
 cookie_name: minim_auth
 session_file_name: /var/www/minim/token.dat
+cookie_ssl_only: false
+cookie_http_only: true

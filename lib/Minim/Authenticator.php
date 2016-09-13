@@ -31,7 +31,7 @@ class Authenticator
 
         $arr = array(
             'token' => $token,
-            'expires' => time() + $this->config->getTokenTimeToLive()
+            'expires' => time() + $this->config->getTokenTtl()
         ); // Prepare array containing token and expiry.
 
         $plain = Spyc::YAMLDump($arr); // Encode as YAML.
@@ -86,7 +86,15 @@ class Authenticator
     public function setCookieToken($token)
     {
         $encrypted = Encryption::encrypt($token, $this->config->getSecretKey()); // Encrypt token.
-        setcookie($this->config->getCookieName(), $encrypted); // Store in cookie.
+
+        // Set cookie on client.
+        setcookie($this->config->getCookieName(),
+            $encrypted,
+            time() + $this->config->getTokenTtl(),
+            '',
+            '',
+            $this->config->getCookieSslOnly(),
+            $this->config->getCookieHttpOnly()); // Store in cookie.
     }
 
     /**
@@ -98,6 +106,12 @@ class Authenticator
      */
     public function authenticate($email, $password)
     {
+        // If we're operating in secure-only mode.
+        if ($this->config->getCookieSslOnly() && !isset($_SERVER['HTTPS'])) {
+            echo 'Connection is insecure, login cannot proceed.';
+            die();
+        }
+
         // Check credentials.
         if ($this->config->getAdminEmail() != $email
             || Encryption::sha256($password, $this->config->getSalt()) != $this->config->getAdminPasswordHash())

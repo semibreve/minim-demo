@@ -72,7 +72,7 @@ class Configuration
      */
     public function getTokenLength()
     {
-        return $this->config['token_len'];
+        return $this->config['token_length'];
     }
 
     /**
@@ -80,7 +80,7 @@ class Configuration
      *
      * @return int
      */
-    public function getTokenTimeToLive()
+    public function getTokenTtl()
     {
         return $this->config['token_ttl'];
     }
@@ -103,5 +103,25 @@ class Configuration
     public function getSessionFileName()
     {
         return $this->config['session_file_name'];
+    }
+
+    /**
+     * Gets whether or not the login cookie is enabled for HTTPS only.
+     *
+     * @return bool
+     */
+    public function getCookieSslOnly()
+    {
+        return $this->config['cookie_ssl_only'];
+    }
+
+    /**
+     * Gets whether or not the login cookie is enabled for HTTP(S) only and not client-side script.
+     *
+     * @return bool
+     */
+    public function getCookieHttpOnly()
+    {
+        return $this->config['cookie_http_only'];
     }
 }
