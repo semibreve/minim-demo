@@ -1,12 +1,12 @@
 # Don't commit this file to source control, it contains your secret settings.
 
-admin_email: me@example.com
-admin_password_hash: 8b2d49d3e1e9a339b030e08e89ed6cb77c50081e8f9e1c41511216b4d1787aef
-secret_key: 7WCPTI3of3cp
-salt: cgJ28CsaeV1T
-token_length: 32
-token_ttl: 1200
-cookie_name: minim_auth
-session_file_name: /var/www/minim/token.dat
-cookie_ssl_only: false
-cookie_http_only: true
+admin_email: me@example.com # The e-mail address of the user, used as a username.
+admin_password_hash: 8b2d49d3e1e9a339b030e08e89ed6cb77c50081e8f9e1c41511216b4d1787aef # The user's password hash.
+secret_key: 7WCPTI3of3cp # The secret key the application uses for symmetric encryption.
+salt: cgJ28CsaeV1T # The salt used to salt passwords before hashing.
+token_length: 32 # The length, in bytes, of any generated authentication tokens.
+token_ttl: 1200 # The time to live for authentication tokens, in seconds.
+cookie_name: minim_auth # The name of the authentication cookie.
+session_file_name: /var/www/minim/token.dat # The name of the session file on-disk.
+cookie_ssl_only: false # Whether or not cookies are enables for HTTPS only. If enabled, non-HTTPS requests will fail.
+cookie_http_only: true # Whether to restrict cookies to HTTP only and disallow access by client-side script.
