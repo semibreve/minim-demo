@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once 'autoload.php';
 
 use Minim\Authenticator;
 use Minim\Configuration;
@@ -8,7 +8,7 @@ use Minim\Configuration;
 // This page is only accessible if logged in.
 $auth = new Authenticator(new Configuration(__DIR__ . '/../security.yml'));
 if (!$auth->isAuthenticated()) {
-    header('Location: index.php');
+    header('Location: /');
     die();
 }
 
@@ -22,7 +22,7 @@ if (!$auth->isAuthenticated()) {
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootswatch/simplex/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/minim.css"/>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <title>Log in - Minim</title>
