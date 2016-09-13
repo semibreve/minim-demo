@@ -1,6 +1,8 @@
 # Minim
 Minimal single-user auth in PHP.
 
+![Screenshot](screenshot.png)
+
 Every so often, you build a website that needs:
   * to run without a database
   * to have an administrator backend
