@@ -77,7 +77,7 @@ if ($auth->isAuthenticated() || // Already logged in?
     </form>
     <div class="row">
         <div class="col-md-12 text-muted text-center small copyright">
-            Flatfolio | Copyright &copy; Saul Johnson
+            Minim | Copyright &copy; Saul Johnson
         </div>
     </div>
 </div>
