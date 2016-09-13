@@ -7,7 +7,7 @@ use Spyc;
 /**
  * A singleton handle on the application security configuration file.
  *
- * @package Flatfolio
+ * @package Minim
  * @author Saul Johnson
  * @since 11/09/2016
  */
@@ -57,6 +57,16 @@ class Security
     }
 
     /**
+     * Gets the salt to use during password hashing.
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->config['salt'];
+    }
+
+    /**
      * Gets the single instance of this class.
      *
      * @return Security
@@ -65,7 +75,7 @@ class Security
     {
         if (self::$instance == null)
         {
-            self::$instance = new Security(__DIR__ . '/../../config/security.yml'); // Load configuration.
+            self::$instance = new Security(__DIR__ . '/../../security.yml'); // Load configuration.
         }
         return self::$instance;
     }

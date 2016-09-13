@@ -1,3 +1,22 @@
+<?php
+
+require_once 'init.php';
+
+use Minim\Auth;
+use Minim\Request;
+
+// Did user attempt login?
+$attempted = Request::isLoginFormSubmitted();
+
+// Try to log user in.
+if (Auth::isAuthenticated() || // Already logged in?
+    ($attempted && Auth::authenticate(Request::getLoginEmail(), Request::getLoginPassword()))) {
+    header('Location: /admin.php');
+    die();
+}
+
+?>
+
 <!doctype html>
 
 <html lang="en">
@@ -9,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css"/>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <title>Log in - Flatfolio</title>
+    <title>Log in - Minim</title>
 </head>
 <body>
 <div class="center-body">
@@ -18,7 +37,7 @@
             <img src="/images/logo.svg" class="logo">
         </div>
     </div>
-    {% if status == 1 %}
+    <?php if ($attempted) { ?>
     <div class="row">
         <div class="col-md-12">
             <div class="alert alert-danger">
@@ -26,7 +45,7 @@
             </div>
         </div>
     </div>
-    {% endif %}
+    <?php } ?>
     <form class="form-signin" method="post">
         <div class="row">
             <div class="col-md-12">

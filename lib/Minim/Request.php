@@ -5,7 +5,7 @@ namespace Minim;
 /**
  * Provides static access to the request submitted from the client.
  *
- * @package Flatfolio
+ * @package Minim
  * @author Saul Johnson
  * @since 11/09/2016
  */

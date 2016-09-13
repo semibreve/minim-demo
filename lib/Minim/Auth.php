@@ -3,25 +3,26 @@
 namespace Minim;
 
 /**
- * Handles very basic authentication for the backend.
+ * Handles very basic authentication.
  *
- * @package Flatfolio
+ * @package Minim
  * @author Saul Johnson
  * @since 11/09/2016
  */
 class Auth
 {
-    const COOKIE_KEY_AUTH = 'flatfolio_auth';
+    const COOKIE_KEY_AUTH = 'minim_auth';
 
     /**
      * Hashes a password.
      *
      * @param string $password  the password to hash
+     * @param string $salt      the salt for the password
      * @return string
      */
-    public static function hashPassword($password)
+    public static function hashPassword($password, $salt)
     {
-        return hash('sha256', $password);
+        return hash('sha256', $password . $salt);
     }
 
     /**
@@ -62,7 +63,7 @@ class Auth
     public static function getAuth()
     {
         // Decrypt password on its way out of cookie.
-        $config = getSecurity();
+        $config = Security::get();
         $auth = isset($_COOKIE[self::COOKIE_KEY_AUTH])
             ? $_COOKIE[self::COOKIE_KEY_AUTH] : '';
         return self::decrypt($auth, $config->getSecretKey());
@@ -76,7 +77,7 @@ class Auth
     public static function setAuth($auth)
     {
         // Encrypt password on its way in to cookie.
-        $config = getSecurity();
+        $config = Security::get();
         setcookie(self::COOKIE_KEY_AUTH, self::encrypt($auth,
             $config->getSecretKey()));
     }
@@ -91,9 +92,9 @@ class Auth
     public static function authenticate($email, $password)
     {
         // Check credentials.
-        $config = getSecurity();
+        $config = Security::get();
         if ($config->getAdminEmail() != $email
-            || self::hashPassword($password) != $config->getAdminPasswordHash())
+            || self::hashPassword($password, $config->getSalt()) != $config->getAdminPasswordHash())
         {
             return false; // Authentication failure.
         }
@@ -112,8 +113,8 @@ class Auth
     public static function isAuthenticated()
     {
         // Is encrypted password stored in cookie?
-        $config = getSecurity();
-        return self::hashPassword(self::getAuth()) == $config->getAdminPasswordHash();
+        $config = Security::get();
+        return self::hashPassword(self::getAuth(), $config->getSalt()) == $config->getAdminPasswordHash();
     }
 
     /**
