@@ -135,8 +135,13 @@ class Authenticator
         unlink($this->config->getSessionFileName()); // Delete session file.
     }
 
-    public function __construct(Configuration $security)
+    /**
+     * Initializes a new instance of a very basic authenticator.
+     *
+     * @param Configuration $config the application configuration
+     */
+    public function __construct(Configuration $config)
     {
-        $this->config = $security;
+        $this->config = $config;
     }
 }
