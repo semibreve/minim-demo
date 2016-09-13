@@ -50,6 +50,12 @@ class Authenticator
      */
     private function validateToken($token)
     {
+        // Without a session file, no token will validate.
+        if (!file_exists($this->config->getSessionFileName()))
+        {
+            return false;
+        }
+
         $encrypted = file_get_contents($this->config->getSessionFileName()); // Read encrypted session file.
 
         $plain = Encryption::decrypt($encrypted, $this->config->getSecretKey()); // Decrypt data.
