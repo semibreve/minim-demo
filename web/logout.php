@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once 'autoload.php';
 
 use Minim\Authenticator;
 use Minim\Configuration;
