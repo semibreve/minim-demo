@@ -10,7 +10,7 @@ use Minim\Configuration;
 $attempted = Request::isLoginFormSubmitted();
 
 // Try to log user in.
-$auth = new Authenticator(new Configuration(__DIR__ . '/../security.yml'));
+$auth = new Authenticator(new Configuration(__DIR__ . '/../config.yml'));
 if ($auth->isAuthenticated() || // Already logged in?
     ($attempted && $auth->authenticate(Request::getLoginEmail(), Request::getLoginPassword()))) {
     header('Location: /admin.php');
