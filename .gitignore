@@ -65,3 +65,6 @@ phpunit.phar
 # Compiled code
 /web/js/
 /web/css/
+
+# Login token.
+/token.dat

@@ -5,7 +5,7 @@ namespace Minim;
 use Spyc;
 
 /**
- * A singleton handle on the application security configuration file.
+ * Represents the application security configuration file.
  *
  * @package Minim
  * @author Saul Johnson
@@ -13,21 +13,20 @@ use Spyc;
  */
 class Security
 {
-    private static $instance;
     private $config;
 
     /**
-     * Private constructor for a handle on the application security configuration file.
+     * Creates a new instance of the application security configuration file.
      *
      * @param string $path  the path to read the security configuration file from
      */
-    private function __construct($path)
+    public function __construct($path)
     {
         $this->config = Spyc::YAMLLoad($path);
     }
 
     /**
-     * Gets the admin email address required for login to the backend.
+     * Gets the admin email address required for login.
      *
      * @return string
      */
@@ -37,7 +36,7 @@ class Security
     }
 
     /**
-     * Gets the password hash required for login to the backend.
+     * Gets the password hash required for login.
      *
      * @return string
      */
@@ -67,16 +66,42 @@ class Security
     }
 
     /**
-     * Gets the single instance of this class.
+     * Gets the length configured for login tokens.
      *
-     * @return Security
+     * @return int
      */
-    public static function get()
+    public function getTokenLength()
     {
-        if (self::$instance == null)
-        {
-            self::$instance = new Security(__DIR__ . '/../../security.yml'); // Load configuration.
-        }
-        return self::$instance;
+        return $this->config['token_len'];
+    }
+
+    /**
+     * Gets the time to live for login tokens, in seconds.
+     *
+     * @return int
+     */
+    public function getTokenTimeToLive()
+    {
+        return $this->config['token_ttl'];
+    }
+
+    /**
+     * Gets the name of the cookie configured to hold the login auth token.
+     *
+     * @return string
+     */
+    public function getCookieName()
+    {
+        return $this->config['cookie_name'];
+    }
+
+    /**
+     * Gets the name of the session file.
+     *
+     * @return string
+     */
+    public function getSessionFileName()
+    {
+        return $this->config['session_file_name'];
     }
 }

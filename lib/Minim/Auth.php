@@ -2,84 +2,85 @@
 
 namespace Minim;
 
+use Spyc;
+
 /**
- * Handles very basic authentication.
+ * Represents a very basic authenticator.
  *
  * @package Minim
  * @author Saul Johnson
- * @since 11/09/2016
+ * @since 13/09/2016
  */
 class Auth
 {
-    const COOKIE_KEY_AUTH = 'minim_auth';
-
     /**
-     * Hashes a password.
+     * The security settings for this authenticator.
      *
-     * @param string $password  the password to hash
-     * @param string $salt      the salt for the password
-     * @return string
+     * @var Security
      */
-    public static function hashPassword($password, $salt)
-    {
-        return hash('sha256', $password . $salt);
-    }
+    private $security;
 
     /**
-     * Encrypts a string.
-     *
-     * @param string $data      the string to encrypt
-     * @param string $password  the password to use to encrypt it
-     * @return string
-     */
-    public static function encrypt($data, $password)
-    {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_CAST_256, MCRYPT_MODE_CBC);
-        $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-        $encryptedMessage = openssl_encrypt($data, "AES-256-CBC", $password, 0, $iv);
-        return $iv.$encryptedMessage;
-    }
-
-    /**
-     * Decrypts a previously encrypted string.
-     *
-     * @param string $data      the string to decrypt
-     * @param string $password  the password to use to decrypt it
-     * @return string
-     */
-    public static function decrypt($data, $password)
-    {
-        $iv_size = mcrypt_get_iv_size(MCRYPT_CAST_256, MCRYPT_MODE_CBC);
-        $iv = substr($data, 0, $iv_size);
-        $decryptedMessage = openssl_decrypt(substr($data, $iv_size), "AES-256-CBC", $password, 0, $iv);
-        return $decryptedMessage;
-    }
-
-    /**
-     * Decrypts the stored password out of the auth cookie and returns it.
+     * Dispenses a randomly generated authentication token.
      *
      * @return string
      */
-    public static function getAuth()
+    private function dispenseToken()
     {
-        // Decrypt password on its way out of cookie.
-        $config = Security::get();
-        $auth = isset($_COOKIE[self::COOKIE_KEY_AUTH])
-            ? $_COOKIE[self::COOKIE_KEY_AUTH] : '';
-        return self::decrypt($auth, $config->getSecretKey());
+        $token = bin2hex(random_bytes($this->security->getTokenLength())); // Generate token.
+
+        $arr = array(
+            'token' => $token,
+            'expires' => time() + $this->security->getTokenTimeToLive()
+        ); // Prepare array containing token and expiry.
+
+        $plain = Spyc::YAMLDump($arr); // Encode as YAML.
+        $encrypted =  Crypto::encrypt($plain, $this->security->getSecretKey()); // Apply symmetric encryption.
+
+        file_put_contents($this->security->getSessionFileName(), $encrypted); // Write to disk.
+
+        return $token;
     }
 
     /**
-     * Encrypts a password into the auth cookie.
+     * Returns true if the given authentication token is valid, otherwise returns false.
      *
-     * @param $auth string  the password to store in the cookie
+     * @param string $token the authentication token to validate
+     * @return bool
      */
-    public static function setAuth($auth)
+    private function validateToken($token)
     {
-        // Encrypt password on its way in to cookie.
-        $config = Security::get();
-        setcookie(self::COOKIE_KEY_AUTH, self::encrypt($auth,
-            $config->getSecretKey()));
+        $encrypted = file_get_contents($this->security->getSessionFileName()); // Read encrypted session file.
+
+        $plain = Crypto::decrypt($encrypted, $this->security->getSecretKey()); // Decrypt data.
+        $file = Spyc::YAMLLoadString($plain); // Parse YAML.
+
+        return $token == $file['token'] && time() < $file['expires']; // Token must be valid and not expired.
+    }
+
+    /**
+     * Decrypts the stored authentication token out of the authentication cookie and returns it.
+     *
+     * @return string
+     */
+    public function getCookieToken()
+    {
+        $name = $this->security->getCookieName();
+        $encrypted = isset($_COOKIE[$name]) ? $_COOKIE[$name] : ''; // Read encrypted cookie.
+        $plain = Crypto::decrypt($encrypted, $this->security->getSecretKey());  // Decrypt cookie.
+
+        return $plain;
+    }
+
+    /**
+     * Encrypts an authentication token into the authentication cookie.
+     *
+     * @param string $token the token to store in the cookie
+     */
+    public function setCookieToken($token)
+    {
+        $encrypted = Crypto::encrypt($token, $this->security->getSecretKey()); // Encrypt token.
+        setcookie($this->security->getCookieName(), $encrypted); // Store in cookie.
     }
 
     /**
@@ -89,18 +90,17 @@ class Auth
      * @param string $password  the password to authenticate
      * @return bool
      */
-    public static function authenticate($email, $password)
+    public function authenticate($email, $password)
     {
         // Check credentials.
-        $config = Security::get();
-        if ($config->getAdminEmail() != $email
-            || self::hashPassword($password, $config->getSalt()) != $config->getAdminPasswordHash())
+        if ($this->security->getAdminEmail() != $email
+            || Crypto::sha256($password, $this->security->getSalt()) != $this->security->getAdminPasswordHash())
         {
             return false; // Authentication failure.
         }
 
-        // Set cookie to encrypted password.
-        self::setAuth($password);
+        // Set cookie to newly dispensed token.
+        $this->setCookieToken($this->dispenseToken());
 
         return true;
     }
@@ -110,18 +110,27 @@ class Auth
      *
      * @return bool
      */
-    public static function isAuthenticated()
+    public function isAuthenticated()
     {
-        // Is encrypted password stored in cookie?
-        $config = Security::get();
-        return self::hashPassword(self::getAuth(), $config->getSalt()) == $config->getAdminPasswordHash();
+        // Validate token.
+        $authenticated = $this->validateToken($this->getCookieToken());
+        if ($authenticated) {
+            $this->setCookieToken($this->dispenseToken()); // Dispense a new token.
+        }
+        return $authenticated;
     }
 
     /**
      * Logs the currently authenticated user out.
      */
-    public static function logout()
+    public function logout()
     {
-        setcookie(self::COOKIE_KEY_AUTH, '');
+        setcookie($this->security->getCookieName(), '', time() - 3600); // Remove client-side cookie.
+        unlink($this->security->getSessionFileName()); // Delete session file.
+    }
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
     }
 }

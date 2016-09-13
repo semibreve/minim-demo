@@ -10,6 +10,7 @@
         }
     ],
     "require": {
-        "mustangostang/spyc": "^0.5.1"
+        "mustangostang/spyc": "^0.5.1",
+        "paragonie/random_compat": "^2.0"
     }
 }
