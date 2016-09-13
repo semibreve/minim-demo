@@ -36,7 +36,7 @@ if ($auth->isAuthenticated() || // Already logged in?
 <div class="center-body">
     <div class="row">
         <div class="col-md-12 text-center">
-            <img src="/images/logo.svg" class="logo">
+            <img src="/svg/logo.svg" class="logo">
         </div>
     </div>
     <?php if ($attempted) { ?>
