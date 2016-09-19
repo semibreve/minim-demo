@@ -1,5 +1,5 @@
 {
-    "name": "lambdacasserole/minim",
+    "name": "lambdacasserole/minim-demo",
     "description": "Minimal single-user auth in PHP.",
     "type": "project",
     "license": "MIT",
@@ -11,6 +11,7 @@
     ],
     "require": {
         "mustangostang/spyc": "^0.5.1",
-        "paragonie/random_compat": "^2.0"
+        "paragonie/random_compat": "^2.0",
+        "lambdacasserole/minim": "^1.0"
     }
 }

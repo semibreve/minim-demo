@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8cc91a16184abcf84eaabf0c8f60f321",
+    "content-hash": "0ae5d7dce35d46caaecb426ec9d071cb",
     "packages": [
+        {
+            "name": "lambdacasserole/minim",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lambdacasserole/minim.git",
+                "reference": "5bccea7ad9b5c2e2b20741119ec18f5cd791b7e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lambdacasserole/minim/zipball/5bccea7ad9b5c2e2b20741119ec18f5cd791b7e7",
+                "reference": "5bccea7ad9b5c2e2b20741119ec18f5cd791b7e7",
+                "shasum": ""
+            },
+            "require": {
+                "mustangostang/spyc": "^0.5.1",
+                "paragonie/random_compat": "^2.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Minim\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saul Johnson",
+                    "email": "saul.a.johnson@gmail.com",
+                    "homepage": "https://sauljohnson.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Minimal single-user auth in PHP.",
+            "homepage": "https://github.com/lambdacasserole/minim",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "single",
+                "user"
+            ],
+            "time": "2016-09-16 18:50:06"
+        },
         {
             "name": "mustangostang/spyc",
             "version": "0.5.1",
