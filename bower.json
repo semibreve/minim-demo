@@ -5,10 +5,11 @@
   "authors": [
     "Saul Johnson <saul.a.johnson@gmail.com>"
   ],
-  "description": "Minimal single-user auth in PHP.",
+  "description": "A demonstration of the Minim single-user authentication library.",
   "keywords": [
     "minimal",
-    "authentication"
+    "authentication",
+    "demo"
   ],
   "license": "MIT",
   "dependencies": {
