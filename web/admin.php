@@ -39,7 +39,7 @@ if (!$auth->isAuthenticated()) {
             <h3>Success!</h3>
             <p>
                 You can only see this page if you're logged in. If you're seeing it now, congratulations! Minim is all
-                set up and configured. Remember there are some settings in <code>security.yml</code> that absolutely
+                set up and configured. Remember there are some settings in <code>config.yml</code> that absolutely
                 <i>must</i> be changed before going to production.
             </p>
         </div>
