@@ -1,9 +1,8 @@
 # Don't commit this file to source control, it contains your secret settings.
 
 admin_email: me@example.com # The e-mail address of the user, used as a username.
-admin_password_hash: 8b2d49d3e1e9a339b030e08e89ed6cb77c50081e8f9e1c41511216b4d1787aef # The user's password hash.
-secret_key: 7WCPTI3of3cp # The secret key the application uses for symmetric encryption.
-salt: cgJ28CsaeV1T # The salt used to salt passwords before hashing.
+admin_password_hash: $2y$10$x8.kXrWv4lXFpObosuwQ0uoiQAUeFAlEL.oi0tN5pnM.72hoK9e8K # The user's password hash.
+secret_key: 7WCPTI3of3cp # The secret key the application uses for symmetric encryption
 token_length: 32 # The length, in bytes, of any generated authentication tokens.
 token_ttl: 1200 # The time to live for authentication tokens, in seconds.
 cookie_name: minim_auth # The name of the authentication cookie.
