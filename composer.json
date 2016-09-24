@@ -10,8 +10,6 @@
         }
     ],
     "require": {
-        "mustangostang/spyc": "^0.5.1",
-        "paragonie/random_compat": "^2.0",
-        "lambdacasserole/minim": "^1.0"
+        "lambdacasserole/minim": "^1.2"
     }
 }

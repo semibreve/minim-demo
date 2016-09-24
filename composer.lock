@@ -4,27 +4,73 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ae5d7dce35d46caaecb426ec9d071cb",
+    "content-hash": "6b47d37ed91f77f289424aebc18b5e5b",
     "packages": [
         {
-            "name": "lambdacasserole/minim",
-            "version": "v1.0.2",
+            "name": "ircmaxell/password-compat",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/lambdacasserole/minim.git",
-                "reference": "5bccea7ad9b5c2e2b20741119ec18f5cd791b7e7"
+                "url": "https://github.com/ircmaxell/password_compat.git",
+                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lambdacasserole/minim/zipball/5bccea7ad9b5c2e2b20741119ec18f5cd791b7e7",
-                "reference": "5bccea7ad9b5c2e2b20741119ec18f5cd791b7e7",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/5c5cde8822a69545767f7c7f3058cb15ff84614c",
+                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/password.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@php.net",
+                    "homepage": "http://blog.ircmaxell.com"
+                }
+            ],
+            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+            "homepage": "https://github.com/ircmaxell/password_compat",
+            "keywords": [
+                "hashing",
+                "password"
+            ],
+            "time": "2014-11-20 16:49:30"
+        },
+        {
+            "name": "lambdacasserole/minim",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lambdacasserole/minim.git",
+                "reference": "52147d50cd8edc0570748a68fdd7c753d89c0c6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lambdacasserole/minim/zipball/52147d50cd8edc0570748a68fdd7c753d89c0c6c",
+                "reference": "52147d50cd8edc0570748a68fdd7c753d89c0c6c",
                 "shasum": ""
             },
             "require": {
+                "ircmaxell/password-compat": "^1.0",
                 "mustangostang/spyc": "^0.5.1",
                 "paragonie/random_compat": "^2.0",
                 "php": ">=5.3.0"
             },
+            "bin": [
+                "bin/minim-genhash"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -51,7 +97,7 @@
                 "single",
                 "user"
             ],
-            "time": "2016-09-16 18:50:06"
+            "time": "2016-09-23 18:42:40"
         },
         {
             "name": "mustangostang/spyc",
