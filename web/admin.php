@@ -25,7 +25,7 @@ if (!$auth->isAuthenticated()) {
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <title>Log in - Minim</title>
+    <title>Authenticated - Minim</title>
 </head>
 <body>
 <div class="center-body">
