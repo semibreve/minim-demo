@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b47d37ed91f77f289424aebc18b5e5b",
+    "content-hash": "54c15e1905930ae0d4e05fbb662e3118",
     "packages": [
         {
             "name": "ircmaxell/password-compat",
@@ -46,58 +46,7 @@
                 "hashing",
                 "password"
             ],
-            "time": "2014-11-20 16:49:30"
-        },
-        {
-            "name": "lambdacasserole/minim",
-            "version": "v1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lambdacasserole/minim.git",
-                "reference": "52147d50cd8edc0570748a68fdd7c753d89c0c6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lambdacasserole/minim/zipball/52147d50cd8edc0570748a68fdd7c753d89c0c6c",
-                "reference": "52147d50cd8edc0570748a68fdd7c753d89c0c6c",
-                "shasum": ""
-            },
-            "require": {
-                "ircmaxell/password-compat": "^1.0",
-                "mustangostang/spyc": "^0.5.1",
-                "paragonie/random_compat": "^2.0",
-                "php": ">=5.3.0"
-            },
-            "bin": [
-                "bin/minim-genhash"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Minim\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Saul Johnson",
-                    "email": "saul.a.johnson@gmail.com",
-                    "homepage": "https://sauljohnson.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Minimal single-user auth in PHP.",
-            "homepage": "https://github.com/lambdacasserole/minim",
-            "keywords": [
-                "Authentication",
-                "auth",
-                "single",
-                "user"
-            ],
-            "time": "2016-09-23 18:42:40"
+            "time": "2014-11-20T16:49:30+00:00"
         },
         {
             "name": "mustangostang/spyc",
@@ -144,20 +93,20 @@
                 "yaml",
                 "yml"
             ],
-            "time": "2013-02-21 10:52:01"
+            "time": "2013-02-21T10:52:01+00:00"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.2",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf"
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/088c04e2f261c33bed6ca5245491cfca69195ccf",
-                "reference": "088c04e2f261c33bed6ca5245491cfca69195ccf",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
                 "shasum": ""
             },
             "require": {
@@ -192,7 +141,58 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-04-03 06:00:07"
+            "time": "2016-11-07T23:38:38+00:00"
+        },
+        {
+            "name": "semibreve/minim",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/semibreve/minim.git",
+                "reference": "d8653a737f8567249b9b2a5a81a4c21c44f383f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/semibreve/minim/zipball/d8653a737f8567249b9b2a5a81a4c21c44f383f0",
+                "reference": "d8653a737f8567249b9b2a5a81a4c21c44f383f0",
+                "shasum": ""
+            },
+            "require": {
+                "ircmaxell/password-compat": "^1.0",
+                "mustangostang/spyc": "^0.5.1",
+                "paragonie/random_compat": "^2.0",
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "bin/minim-genhash"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Minim\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saul Johnson",
+                    "email": "saul.a.johnson@gmail.com",
+                    "homepage": "https://sauljohnson.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Minimal single-user auth in PHP.",
+            "homepage": "https://github.com/semibreve/minim",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "single",
+                "user"
+            ],
+            "time": "2016-12-08T11:04:56+00:00"
         }
     ],
     "packages-dev": [],

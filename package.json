@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lambdacasserole/minim-demo.git"
+    "url": "git+https://github.com/semibreve/minim-demo.git"
   },
   "keywords": [
     "minimal",
@@ -18,9 +18,9 @@
   "author": "Saul Johnson <saul.a.johnson@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lambdacasserole/minim-demo/issues"
+    "url": "https://github.com/semibreve/minim-demo/issues"
   },
-  "homepage": "https://github.com/lambdacasserole/minim-demo#readme",
+  "homepage": "https://github.com/semibreve/minim-demo#readme",
   "devDependencies": {
     "bower": "^1.7.9",
     "es6-promise": "^3.2.1",

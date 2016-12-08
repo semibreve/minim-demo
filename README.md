@@ -1,5 +1,5 @@
 # Minim Demo Application
-A demonstration of the [Minim](https://github.com/lambdacasserole/minim) single-user authentication library.
+A demonstration of the [Minim](https://github.com/semibreve/minim) single-user authentication library.
 
 ![Screenshot](screenshot.png)
 
@@ -51,7 +51,7 @@ Email: me@example.com
 Password: demo
 ```
 
-These *must* be changed before you go into production. Set everything up according to [the configuration guide for Minim](https://github.com/lambdacasserole/minim).
+These *must* be changed before you go into production. Set everything up according to [the configuration guide for Minim](https://github.com/semibreve/minim).
 
 ## Limitations
 I'm not a security researcher, don't rely on Minim to be secure out of the box and always perform your own penetration testing.
