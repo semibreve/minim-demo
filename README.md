@@ -54,4 +54,4 @@ Password: demo
 These *must* be changed before you go into production. Set everything up according to [the configuration guide for Minim](https://github.com/semibreve/minim).
 
 ## Limitations
-I'm not a security researcher, don't rely on Minim to be secure out of the box and always perform your own penetration testing.
+Don't rely on Minim to be secure out of the box and always perform your own penetration testing.
