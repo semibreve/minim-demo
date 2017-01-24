@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dd55b5cf6ebdd43284e5187417adb45",
+    "content-hash": "00eb10ab5ba25f8dec0073a7c3cf5b0c",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -204,16 +204,16 @@
         },
         {
             "name": "semibreve/minim",
-            "version": "v1.4",
+            "version": "v1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/semibreve/minim.git",
-                "reference": "d96c3e9bb81a149c328435ec2e2c3b31d263640c"
+                "reference": "b212f1cee31e2998f05f908ab16ad1e21af0bea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/semibreve/minim/zipball/d96c3e9bb81a149c328435ec2e2c3b31d263640c",
-                "reference": "d96c3e9bb81a149c328435ec2e2c3b31d263640c",
+                "url": "https://api.github.com/repos/semibreve/minim/zipball/b212f1cee31e2998f05f908ab16ad1e21af0bea0",
+                "reference": "b212f1cee31e2998f05f908ab16ad1e21af0bea0",
                 "shasum": ""
             },
             "require": {
@@ -252,7 +252,7 @@
                 "single",
                 "user"
             ],
-            "time": "2017-01-24T20:35:02+00:00"
+            "time": "2017-01-24T21:01:34+00:00"
         }
     ],
     "packages-dev": [],
