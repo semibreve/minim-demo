@@ -25,7 +25,6 @@ if ($auth->isAuthenticated() || // Already logged in?
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootswatch/simplex/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
