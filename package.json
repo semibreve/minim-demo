@@ -25,7 +25,7 @@
     "bower": "^1.8.8",
     "es6-promise": "^4.2.8",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp-autoprefixer": "^9.0.0",
     "gulp-clean-css": "^4.2.0",
     "gulp-less": "^4.0.1"
   }
